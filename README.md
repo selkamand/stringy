@@ -29,14 +29,14 @@ devtools::install_github("selkamand/stringy")
 ``` r
 library(stringy)
 
-ugly_string <- "reallyUglyPoorly_formattedString(not_really_though)"
+ugly_string <- "reallyUglyPoorly_formattedString(although_not_for_long)"
 
 # Make Pretty
-prettytext(string = ugly_string)
-#> [1] "Really Ugly Poorly Formatted String (not Really Though)"
+prettify(string = ugly_string)
+#> [1] "Really Ugly Poorly Formatted String (Although Not For Long)"
 
 
 # Customise output
-prettytext(string = ugly_string, capitalisation = "first")
-#> [1] "Really ugly poorly formatted string (not really though)"
+prettify(string = ugly_string, capitalisation = "first")
+#> [1] "Really ugly poorly formatted string (although not for long)"
 ```

@@ -7,7 +7,7 @@
 #' @param trimws trim leading and trailing and whitespace
 #' @param space_camel turn camelCase into camel space (flag)
 #' @param space_snake turn snake_case into snake space  (flag)
-#' @param space_bracket turn bracketed(words) into bracketed (words)  (flag)
+#' @param space_bracket turn \code{bracketed(words)} into \code{bracketed (words)}  (flag)
 #' @return human friendly formatted version of input string (character)
 #'
 #' @details
@@ -22,13 +22,14 @@
 #'  | unchanged | Whatever is INPUT IS OUTPUT |
 #'
 #' @export
-prettytext <- function(string,
-                     capitalisation = c('title', 'all', 'first', 'lower', 'unchanged'),
+prettify <- function(string,
+                     capitalisation = c('all', 'first', 'title', 'lower', 'unchanged'),
                      trimws = TRUE,
                      space_camel = TRUE,
                      space_snake = TRUE,
                      space_bracket = TRUE
                      ){
+
   capitalisation <- rlang::arg_match(capitalisation)
 
   # snake_case to snake case
@@ -56,7 +57,7 @@ prettytext <- function(string,
     string <- tools::toTitleCase(text = string)
   else if(capitalisation == "all"){
     string <- gsub(x=string, pattern = "^([a-z])",  perl = TRUE, replacement = ("\\U\\1"))
-    string <- gsub(x=string, pattern = " ([a-z])",  perl = TRUE, replacement = (" \\U\\1"))
+    string <- gsub(x=string, pattern = " (\\(?[a-z])",  perl = TRUE, replacement = (" \\U\\1"))
   }
   else if(capitalisation == "first"){
     string <- gsub(x=string, pattern = "([A-Z])",  perl = TRUE, replacement = ("\\L\\1"))
@@ -70,5 +71,31 @@ prettytext <- function(string,
   }
 
 
+  # # Autodetect units (and move to brackets)
+  # if (autodetect_units) {
+  #   string <- sub("\\sm(\\s|$)", " (m)", string)
+  #   string <- sub("\\smm(\\s|$)", " (mm)", string)
+  #   string <- sub("\\sm(\\s|$)", " (cm)", string)
+  #   string <- sub("\\sm(\\s|$)", " (km)", string)
+  #   string <- sub("\\sg(\\s|$)", " (g)", string)
+  #   string <- sub("\\skg(\\s|$)", " (kg)", string)
+  #   string <- sub("\\smg(\\s|$)", " (mm)", string)
+  #   string <- sub("\\soz(\\s|$)", " (oz)", string)
+  #   string <- sub("\\slb(\\s|$)", " (lb)", string)
+  #   string <- sub("\\sin(\\s|$)", " (in)", string)
+  #   string <- sub("\\sft(\\s|$)", " (ft)", string)
+  #   string <- sub("\\syd(\\s|$)", " (yd)", string)
+  #   string <- sub("\\smi(\\s|$)", " (mi)", string)
+  # }
+  #
+  # # Add space after apostrophe
+  # if (space_after_apostrophe) {
+  #   string <- gsub(x = string, pattern = "([[:alnum:]]\\')([^[:space:]])", replacement = "\\1 \\2")
+  # }
+
+
+
+
   return(string)
 }
+

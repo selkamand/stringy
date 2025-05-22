@@ -37,12 +37,12 @@ devtools::install_github("selkamand/stringy")
 ```{r example}
 library(stringy)
 
-ugly_string <- "reallyUglyPoorly_formattedString(not_really_though)"
+ugly_string <- "reallyUglyPoorly_formattedString(although_not_for_long)"
 
 # Make Pretty
-prettytext(string = ugly_string)
+prettify(string = ugly_string)
 
 
 # Customise output
-prettytext(string = ugly_string, capitalisation = "first")
+prettify(string = ugly_string, capitalisation = "first")
 ```
